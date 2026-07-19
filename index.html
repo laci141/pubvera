@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pubvera — Eight open-data research tools</title>
+<meta name="description" content="Pubvera is a family of eight open-data research tools for science, medicine and funding: literature analytics, clinical trials, medical devices, retractions, drug recalls and research grants.">
+<meta property="og:title" content="Pubvera — Eight open-data research tools">
+<meta property="og:description" content="Open-data research tools for science, medicine and funding: literature, evidence consensus, clinical trials, medical devices, retractions, drug recalls and grants.">
+<meta property="og:url" content="https://pubvera.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pubvera — Eight open-data research tools">
+<meta name="twitter:description" content="Open-data research tools for science, medicine and funding.">
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<style>
+:root{
+  --bg-a:#0a0f1e; --bg-b:#101a35;
+  --glass:rgba(255,255,255,0.06);
+  --glass-strong:rgba(255,255,255,0.09);
+  --glass-border:rgba(255,255,255,0.12);
+  --glass-glow:rgba(120,160,255,0.18);
+  --ink:#e8edf7; --muted:#99a3b8;
+  --accent:#60a5fa; --good:#22c55e; --warn:#eab308;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",monospace;
+  --sans:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg-a);color:var(--ink);min-height:100vh;
+  font-family:var(--sans);line-height:1.55;
+}
+/* Colored gradient backdrop — required so the glass blur is visible */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(0,212,255,.16),transparent 40%),
+    radial-gradient(circle at 85% 15%,rgba(124,58,237,.16),transparent 40%),
+    radial-gradient(circle at 25% 85%,rgba(34,197,94,.12),transparent 40%),
+    radial-gradient(circle at 75% 80%,rgba(96,165,250,.14),transparent 40%),
+    linear-gradient(135deg,var(--bg-a) 0%,var(--bg-b) 100%);
+}
+a{color:var(--accent)}
+.wrap{max-width:1280px;margin:0 auto;padding:1.2rem}
+header.site{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:.6rem .2rem 1.1rem}
+.logo{font-size:1.7rem;font-weight:800;letter-spacing:.02em}
+.logo span{color:var(--accent)}
+.tagline{color:var(--muted);font-size:.95rem}
+.layout{display:flex;gap:1.2rem;align-items:flex-start}
+/* Sidebar */
+nav.side{
+  width:230px;flex-shrink:0;position:sticky;top:1rem;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:1rem;
+  padding:1.1rem;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+.navgroup{margin-bottom:1rem}
+.navgroup h3{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.navgroup a{
+  display:block;padding:.38rem .6rem;border-radius:.55rem;color:var(--ink);
+  text-decoration:none;font-size:.92rem;border:1px solid transparent;
+}
+.navgroup a:hover{background:var(--glass-strong)}
+.navgroup a.active{background:var(--glass-strong);border-color:var(--glass-border);color:var(--accent);font-weight:600}
+#navToggle{display:none;width:100%;background:var(--glass-strong);border:1px solid var(--glass-border);
+  color:var(--ink);border-radius:.6rem;padding:.5rem;font-size:.95rem;cursor:pointer;margin-bottom:.6rem}
+/* Main panel */
+main.panel{
+  flex:1;min-width:0;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:1rem;
+  padding:1.6rem;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
+}
+.panel h2{font-size:1.45rem;margin-bottom:.2rem}
+.panel .sub{color:var(--muted);margin-bottom:1rem}
+.openbtn{
+  display:inline-block;background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:#fff;text-decoration:none;font-weight:700;padding:.55rem 1.3rem;
+  border-radius:999px;font-size:.95rem;box-shadow:0 4px 18px rgba(96,165,250,.35);
+}
+.openbtn:hover{filter:brightness(1.12)}
+.wakehint{display:block;color:var(--muted);font-size:.78rem;margin-top:.4rem;margin-bottom:1.1rem}
+.panel h4{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:1.1rem 0 .35rem}
+.panel ul{padding-left:1.2rem;font-size:.92rem}
+.panel ul li{margin-bottom:.2rem}
+.srcline{font-size:.92rem}
+.samplenote{color:var(--muted);font-size:.8rem;margin-top:.7rem}
+/* Sample table */
+.tablewrap{overflow-x:auto;margin-top:.4rem;border:1px solid var(--glass-border);border-radius:.7rem}
+table.sample{border-collapse:collapse;width:100%;font-size:.82rem}
+table.sample th{
+  text-align:left;padding:.45rem .6rem;background:rgba(255,255,255,.08);
+  border-bottom:1px solid var(--glass-border);white-space:nowrap;position:sticky;top:0
+}
+table.sample td{padding:.4rem .6rem;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top}
+table.sample tr:hover td{background:rgba(255,255,255,.03)}
+/* Export row (export-suite styling) */
+.meta-row{display:flex;justify-content:space-between;align-items:center;margin:1rem 0 .6rem;gap:12px;flex-wrap:wrap}
+.meta{font-size:.8rem;color:var(--muted)}
+.qcount{color:#7dd3fc;font-size:.78rem;font-weight:600;margin-left:6px}
+.dl-group{display:flex;gap:8px;flex-shrink:0;align-items:center;flex-wrap:wrap}
+.dl{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#cdd6ea;
+  padding:4px 14px;border-radius:999px;font-size:.75rem;font-weight:600;cursor:pointer;
+  transition:.2s;white-space:nowrap;flex-shrink:0}
+.dl:hover{background:rgba(255,255,255,.15);border-color:var(--accent);color:#fff}
+.qfilter{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.16);border-radius:999px;
+  padding:4px 14px;color:var(--ink);font-size:.78rem;width:190px}
+.qfilter:focus{outline:none;border-color:var(--accent)}
+/* Overview grid */
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.8rem;margin-top:1rem}
+.ovcard{
+  background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:.8rem;
+  padding: .9rem 1rem;cursor:pointer;transition:.2s;text-decoration:none;color:var(--ink);display:block
+}
+.ovcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ovcard b{color:var(--accent)}
+.ovcard p{font-size:.83rem;color:var(--muted);margin-top:.2rem}
+footer.site{margin-top:1.4rem;padding:1rem .3rem;color:var(--muted);font-size:.78rem;line-height:1.6}
+footer.site a{color:var(--muted)}
+@media(max-width:768px){
+  .layout{flex-direction:column}
+  nav.side{width:100%;position:static;padding:.8rem;
+    backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px)}
+  main.panel{padding:1rem;backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px)}
+  #navToggle{display:block}
+  #navGroups{display:none}
+  #navGroups.open{display:block}
+  .meta-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <div class="logo">Pub<span>vera</span></div>
+  <div class="tagline">Eight open-data research tools for science, medicine and funding.</div>
+</header>
+
+<div class="layout">
+<nav class="side">
+  <button id="navToggle" type="button" aria-label="Toggle menu">☰ Menu</button>
+  <div id="navGroups">
+    <div class="navgroup"><h3>Literature &amp; evidence</h3>
+      <a href="#bibliovera" data-app="bibliovera">Bibliovera</a>
+      <a href="#praxvera" data-app="praxvera">Praxvera</a>
+      <a href="#corpova" data-app="corpova">Corpova</a>
+    </div>
+    <div class="navgroup"><h3>Trials &amp; devices</h3>
+      <a href="#trialvera" data-app="trialvera">Trialvera</a>
+      <a href="#devicera" data-app="devicera">Devicera</a>
+    </div>
+    <div class="navgroup"><h3>Safety &amp; integrity</h3>
+      <a href="#retractis" data-app="retractis">Retractis</a>
+      <a href="#recallis" data-app="recallis">Recallis</a>
+    </div>
+    <div class="navgroup"><h3>Funding</h3>
+      <a href="#grantvera" data-app="grantvera">Grantvera</a>
+    </div>
+  </div>
+</nav>
+
+<main class="panel" id="panel"><!-- filled by JS --></main>
+</div>
+
+<footer class="site">
+  <div>Pubvera tools report public open data. They are not medical, legal or financial advice, and absence of a record is not evidence of absence.</div>
+  <div><a href="https://github.com/laci141/pubvera" target="_blank" rel="noopener noreferrer">GitHub — laci141/pubvera</a></div>
+</footer>
+</div>
+
+<script>
+"use strict";
+/* ───────────────────────── App registry ───────────────────────── */
+const APPS = {
+  bibliovera: {
+    name: "Bibliovera",
+    tagline: "Journal bibliometrics — institution growth, author rankings and topic trends across the medical literature.",
+    url: "https://pubvera-bibliovera.onrender.com/",
+    health: "healthz",
+    what: [
+      "Ranks authors and institutions across a full journal corpus (The Lancet)",
+      "Tracks topic drift and MeSH-style trends over decades",
+      "Computed from a local OpenAlex mirror — fast, keyless queries",
+      "Every result exports to CSV, Excel, BibTeX and JSON"
+    ],
+    sources: "OpenAlex (local mirror of The Lancet corpus), Crossref",
+    bibType: "article"
+  },
+  praxvera: {
+    name: "Praxvera",
+    tagline: "Clinical literature search — 190,000+ clinical research articles from 1990 to today, with full abstracts.",
+    url: "https://pubvera-praxvera.onrender.com/",
+    health: "healthz",
+    what: [
+      "Full-text search over clinical research articles via OpenAlex",
+      "Filters by year range, sorts by citations or recency",
+      "Full abstracts and open-access links where available",
+      "All legal, keyless, open data"
+    ],
+    sources: "OpenAlex",
+    bibType: "article"
+  },
+  corpova: {
+    name: "Corpova",
+    tagline: "Evidence consensus analysis — claim-level verdicts computed from the scientific literature.",
+    url: "https://pubvera-corpova.onrender.com/",
+    health: "",
+    what: [
+      "Enter a claim, get a transparent consensus verdict with a score",
+      "Classifies each study as supporting, refuting, mixed or inconclusive",
+      "Weighs study design (meta-analysis > RCT > observational)",
+      "Compare two claims, find evidence gaps and controversies"
+    ],
+    sources: "OpenAlex",
+    bibType: "misc"
+  },
+  trialvera: {
+    name: "Trialvera",
+    tagline: "Clinical trial search and analysis — registry data enriched with publications and FDA safety signals.",
+    url: "https://pubvera-trialvera.onrender.com/",
+    health: "healthz",
+    what: [
+      "Search and filter trials from ClinicalTrials.gov",
+      "Risk reads, completion forecasts and enrollment plausibility per trial",
+      "Linked evidence from PubMed and OpenAlex",
+      "FDA FAERS adverse-event signals for drugs"
+    ],
+    sources: "ClinicalTrials.gov, PubMed, OpenAlex, FDA FAERS",
+    bibType: "misc"
+  },
+  devicera: {
+    name: "Devicera",
+    tagline: "Medical device intelligence — registrations, UDI codes and FDA regulatory status.",
+    url: "https://pubvera-devicera.onrender.com/",
+    health: "api/health",
+    what: [
+      "Search device registrations and listings by brand or category",
+      "UDI / GUDID lookups and device classification",
+      "Adverse-event trends and failure modes from MAUDE",
+      "Regulatory dossiers combining several openFDA feeds"
+    ],
+    sources: "openFDA (device listing, MAUDE), AccessGUDID",
+    bibType: "misc"
+  },
+  retractis: {
+    name: "Retractis",
+    tagline: "Retraction and research-integrity checker — is a paper retracted, and what supersedes it?",
+    url: "https://pubvera-retractis.onrender.com/",
+    health: "healthz",
+    what: [
+      "Check any DOI against known retractions and expressions of concern",
+      "Search retracted literature by topic",
+      "Finds newer research that supersedes a retracted paper",
+      "No login, no keys — Crossref and OpenAlex open data"
+    ],
+    sources: "Crossref (retraction and update metadata), OpenAlex",
+    bibType: "article"
+  },
+  recallis: {
+    name: "Recallis",
+    tagline: "Drug recall and enforcement search — FDA recalls by drug, firm or classification.",
+    url: "https://pubvera-recallis.onrender.com/",
+    health: "healthz",
+    what: [
+      "Check a drug name against FDA enforcement reports",
+      "Search recalls by firm or recall classification (Class I–III)",
+      "Recent recalls feed and reference data",
+      "Keyless openFDA queries"
+    ],
+    sources: "openFDA (drug enforcement)",
+    bibType: "misc"
+  },
+  grantvera: {
+    name: "Grantvera",
+    tagline: "Research grant and funding search across NIH, NSF and Grants.gov.",
+    url: "https://pubvera-grantvera.onrender.com/",
+    health: "healthz",
+    what: [
+      "Search awarded grants by keyword across three federal sources",
+      "Filter by minimum award amount and fiscal year",
+      "PI and organization details per award",
+      "Keyless, open data"
+    ],
+    sources: "NIH RePORTER, NSF Awards, Grants.gov",
+    bibType: "misc"
+  }
+};
+
+const GROUP_OF = {
+  bibliovera:"Literature & evidence", praxvera:"Literature & evidence", corpova:"Literature & evidence",
+  trialvera:"Trials & devices", devicera:"Trials & devices",
+  retractis:"Safety & integrity", recallis:"Safety & integrity",
+  grantvera:"Funding"
+};
+
+/* ───────────────────────── Wake-on-intent ─────────────────────────
+   When the visitor opens an app panel, silently ping that app's Render
+   instance so it is warm by the time they click through. no-cors means we
+   need no CORS headers app-side; we only care that the request lands.
+   Once per app per session, never on a timer. */
+const woken = new Set();
+function wakeApp(key){
+  if (woken.has(key)) return;
+  woken.add(key);
+  const app = APPS[key];
+  try {
+    fetch(app.url + app.health, {mode:"no-cors", cache:"no-store"}).catch(function(){});
+  } catch(e){ /* silent by design */ }
+}
+
+/* ───────────────────────── Sample data + WYSIWYG views ─────────────────────────
+   registerView stores, per app, the full sample rows and the current filter.
+   Every export goes through exportRows() — the one shared filter chain — so
+   what the visitor sees is exactly what downloads. */
+const views = {};           // key -> {rows, cols, filter, meta}
+function registerView(key, rows, meta){
+  const cols = [];
+  rows.forEach(r => Object.keys(r||{}).forEach(k => { if(!cols.includes(k)) cols.push(k); }));
+  views[key] = {rows: rows, cols: cols, filter: "", meta: meta};
+}
+function exportRows(key){
+  const v = views[key];
+  if (!v) return [];
+  const q = v.filter.trim().toLowerCase();
+  if (!q) return v.rows;
+  return v.rows.filter(r => v.cols.some(c => String(r[c]==null?"":r[c]).toLowerCase().includes(q)));
+}
+const samples = {};         // key -> loaded sample JSON (or null after failed load)
+async function loadSample(key){
+  if (key in samples) return samples[key];
+  try {
+    const res = await fetch("data/" + key + "-sample.json", {cache:"no-store"});
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    samples[key] = await res.json();
+  } catch(e) {
+    samples[key] = null;
+  }
+  return samples[key];
+}
+
+/* ───────────────────────── Rendering ───────────────────────── */
+function esc(s){
+  return String(s==null?"":s).replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function prettyCol(c){
+  return c.replace(/_/g," ").replace(/\b\w/g, ch => ch.toUpperCase());
+}
+function metaText(key){
+  const v = views[key];
+  const shown = exportRows(key).length;
+  return "Pubvera hub · " + v.meta.app + " sample · query: \"" + v.meta.query + "\" · " +
+    shown + " of " + v.rows.length + " rows · source: " + v.meta.source +
+    " · sample captured " + v.meta.captured_at;
+}
+function renderTable(key){
+  const v = views[key];
+  const rows = exportRows(key);
+  let h = "<table class=\"sample\"><thead><tr>";
+  v.cols.forEach(c => h += "<th>" + esc(prettyCol(c)) + "</th>");
+  h += "</tr></thead><tbody>";
+  rows.forEach(r => {
+    h += "<tr>";
+    v.cols.forEach(c => {
+      let val = r[c];
+      if (val === true) val = "Yes";
+      if (val === false || val == null) val = "";
+      h += "<td>" + esc(val) + "</td>";
+    });
+    h += "</tr>";
+  });
+  h += "</tbody></table>";
+  if (!rows.length) h += "<p class=\"samplenote\">No rows match the filter.</p>";
+  return h;
+}
+function refreshTable(key){
+  const tw = document.getElementById("tw_" + key);
+  const mt = document.getElementById("mt_" + key);
+  if (tw) tw.innerHTML = renderTable(key);
+  if (mt) mt.textContent = metaText(key);
+}
+
+function panelHTML(key){
+  const app = APPS[key];
+  let h = "<h2>" + esc(app.name) + "</h2>";
+  h += "<p class=\"sub\">" + esc(app.tagline) + "</p>";
+  h += "<a class=\"openbtn\" href=\"" + app.url + "\" target=\"_blank\" rel=\"noopener noreferrer\">▶ Open live app ↗</a>";
+  h += "<span class=\"wakehint\">First load may take up to a minute — the app wakes on demand.</span>";
+  h += "<h4>What it does</h4><ul>";
+  app.what.forEach(w => h += "<li>" + esc(w) + "</li>");
+  h += "</ul>";
+  h += "<h4>Data sources</h4><p class=\"srcline\">" + esc(app.sources) + "</p>";
+  h += "<h4>Sample result</h4>";
+  h += "<div id=\"sample_" + key + "\"><p class=\"samplenote\">Loading sample…</p></div>";
+  h += "<p class=\"samplenote\">This is a stored sample. Open the live app above for fresh, full results.</p>";
+  return h;
+}
+
+function overviewHTML(){
+  let h = "<h2>Pubvera</h2>";
+  h += "<p class=\"sub\">A family of eight open-data research tools for science, medicine and funding. " +
+       "Each app queries public, keyless data sources — no logins, no API keys, no paywalls. " +
+       "Pick a tool from the menu, preview a real sample result, then open the live app.</p>";
+  h += "<div class=\"ovgrid\">";
+  Object.keys(APPS).forEach(key => {
+    const app = APPS[key];
+    h += "<a class=\"ovcard\" href=\"#" + key + "\"><b>" + esc(app.name) + "</b> · " +
+         "<span style=\"font-size:.78rem;color:var(--muted)\">" + esc(GROUP_OF[key]) + "</span>" +
+         "<p>" + esc(app.tagline) + "</p></a>";
+  });
+  h += "</div>";
+  return h;
+}
+
+async function showPanel(key){
+  const panel = document.getElementById("panel");
+  document.querySelectorAll(".navgroup a").forEach(a =>
+    a.classList.toggle("active", a.dataset.app === key));
+  if (!key || !APPS[key]) {
+    panel.innerHTML = overviewHTML();
+    return;
+  }
+  wakeApp(key);
+  panel.innerHTML = panelHTML(key);
+  const data = await loadSample(key);
+  const box = document.getElementById("sample_" + key);
+  if (!box) return; // user navigated away while loading
+  if (!data || !Array.isArray(data.rows) || !data.rows.length) {
+    box.innerHTML = "<p class=\"samplenote\">Sample data is unavailable right now — open the live app above for real results.</p>";
+    return;
+  }
+  registerView(key, data.rows, data.meta);
+  const base = key + "-sample";
+  box.innerHTML =
+    "<div class=\"meta-row\"><span class=\"meta\" id=\"mt_" + key + "\"></span>" +
+    "<span class=\"dl-group\">" +
+    "<input class=\"qfilter\" type=\"text\" placeholder=\"🔍 Filter results…\" id=\"qf_" + key + "\">" +
+    "<button class=\"dl\" onclick=\"downloadBibTeX('" + key + "','" + base + ".bib')\">⬇ BibTeX</button>" +
+    "<button class=\"dl\" onclick=\"downloadXLSX('" + key + "','" + base + ".xlsx')\">⬇ Excel</button>" +
+    "<button class=\"dl\" onclick=\"downloadCSV('" + key + "','" + base + ".csv')\">⬇ CSV</button>" +
+    "<button class=\"dl\" onclick=\"downloadJSON('" + key + "','" + base + ".json')\">⬇ JSON</button>" +
+    "</span></div>" +
+    "<div class=\"tablewrap\" id=\"tw_" + key + "\"></div>";
+  document.getElementById("qf_" + key).addEventListener("input", function(){
+    views[key].filter = this.value;
+    refreshTable(key);
+  });
+  refreshTable(key);
+}
+
+/* ───────────────────────── Exports (export-suite) ───────────────────────── */
+function toCSV(rows){
+  const cols = [];
+  rows.forEach(r => Object.keys(r||{}).forEach(k => { if(!cols.includes(k)) cols.push(k); }));
+  const cell = v => {
+    // Booleans exported as text so localized Excel never shows IGAZ/HAMIS.
+    if (v===null||v===undefined||v===false) return "";
+    if (v===true) return "Yes";
+    let s = (typeof v==="object") ? JSON.stringify(v) : String(v);
+    if (/[",\r\n]/.test(s)) s = '"' + s.replace(/"/g,'""') + '"';
+    return s;
+  };
+  // "sep=," tells Excel the delimiter regardless of the user's locale.
+  const lines = ["sep=,", cols.map(cell).join(",")];
+  rows.forEach(r => lines.push(cols.map(c => cell(r?r[c]:"")).join(",")));
+  return "﻿" + lines.join("\r\n");
+}
+function downloadCSV(key, filename){
+  const rows = exportRows(key);
+  if (!rows.length){ alert("No rows to export — clear the filter first."); return; }
+  triggerDownload(new Blob([toCSV(rows)],{type:"text/csv;charset=utf-8"}), filename);
+}
+function downloadXLSX(key, filename){
+  const rows = exportRows(key);
+  if (!rows.length){ alert("No rows to export — clear the filter first."); return; }
+  const cols = [];
+  rows.forEach(r => Object.keys(r||{}).forEach(k => { if(!cols.includes(k)) cols.push(k); }));
+  const aoa = [cols].concat(rows.map(r => cols.map(c => {
+    const v = r ? r[c] : "";
+    if (v===null||v===undefined||v===false) return "";
+    if (v===true) return "Yes";
+    return (typeof v==="object") ? JSON.stringify(v) : v;
+  })));
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+  // Long free text goes left-aligned and wide; short values centre.
+  const colInfo = cols.map(c => {
+    let max = String(c).length, sum = 0, cnt = 0;
+    rows.forEach(r => { const v = r?r[c]:""; const L = String(v==null?"":v).length; if (L>max) max=L; sum+=L; cnt++; });
+    const avg = cnt ? sum/cnt : 0;
+    const isLong = (max>22)||(avg>18);
+    return {wch: Math.min(Math.max(max+2,9), isLong?90:24), left: isLong};
+  });
+  const range = XLSX.utils.decode_range(ws["!ref"]);
+  const centerH = {vertical:"center",horizontal:"center",wrapText:false};
+  for (let R=range.s.r; R<=range.e.r; R++){
+    for (let C=range.s.c; C<=range.e.c; C++){
+      const addr = XLSX.utils.encode_cell({r:R,c:C});
+      if (!ws[addr]) continue;
+      if (R===0){
+        ws[addr].s = {font:{bold:true,color:{rgb:"FFFFFF"}},alignment:centerH,
+          fill:{fgColor:{rgb:"4472C4"}},
+          border:{bottom:{style:"thin",color:{rgb:"999999"}}}};
+      } else {
+        ws[addr].s = {alignment:{vertical:"center",
+          horizontal:(colInfo[C]&&colInfo[C].left)?"left":"center",wrapText:false}};
+      }
+    }
+  }
+  ws["!cols"] = colInfo.map(ci => ({wch:ci.wch}));
+  ws["!freeze"] = {xSplit:0, ySplit:1};
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, views[key].meta.app);
+  XLSX.writeFile(wb, filename);
+}
+function bibKey(r,i){
+  const t = String(r.title||r.author||r.product||"item").split(/\s+/)[0].replace(/[^A-Za-z0-9]/g,"");
+  const y = Number(r.year||r.fiscal_year||0)||"";
+  return (t||"ref").toLowerCase()+(y||"")+"_"+(i+1);
+}
+function bibEsc(v){ return String(v==null?"":v).replace(/[{}\\]/g,"").trim(); }
+function toBibTeXArticles(key, rows){
+  const meta = views[key].meta;
+  const out = [];
+  rows.forEach((r,i) => {
+    const title = bibEsc(r.title||"");
+    if (!title) return;
+    const doi = String(r.doi||"").replace(/^https?:\/\/(dx\.)?doi\.org\//i,"").trim();
+    const year = Number(r.year||0);
+    const journal = bibEsc(r.journal||"");
+    const authors = bibEsc(r.authors||r.author||"");
+    const lines = ["@article{"+bibKey(r,i)+","];
+    lines.push("  title   = {"+title+"},");
+    if (authors) lines.push("  author  = {"+authors+"},");
+    if (journal) lines.push("  journal = {"+journal+"},");
+    if (year)    lines.push("  year    = {"+year+"},");
+    if (doi)     lines.push("  doi     = {"+doi+"},");
+    if (doi)     lines.push("  url     = {https://doi.org/"+doi+"},");
+    lines.push("  note    = {"+bibEsc(metaText(key))+"}");
+    lines.push("}");
+    out.push(lines.join("\n"));
+  });
+  return out.join("\n\n")+"\n";
+}
+function toBibTeXMisc(key, rows){
+  const meta = views[key].meta;
+  const y = new Date().getFullYear();
+  return "@misc{pubvera_"+key+"_"+y+",\n"+
+    "  title  = {"+bibEsc(meta.app+" sample: "+meta.query)+"},\n"+
+    "  author = {{Pubvera "+bibEsc(meta.app)+"}},\n"+
+    "  year   = {"+y+"},\n"+
+    "  howpublished = {Pubvera research tools hub},\n"+
+    "  note   = {"+bibEsc(metaText(key))+"; underlying data from "+bibEsc(meta.source)+"},\n"+
+    "  url    = {"+APPS[key].url+"}\n"+
+    "}\n";
+}
+function downloadBibTeX(key, filename){
+  const rows = exportRows(key);
+  if (!rows.length){ alert("No rows to export — clear the filter first."); return; }
+  const text = (APPS[key].bibType === "article" && rows.some(r => r.title))
+    ? toBibTeXArticles(key, rows.filter(r => r.title))
+    : toBibTeXMisc(key, rows);
+  triggerDownload(new Blob([text],{type:"application/x-bibtex;charset=utf-8"}), filename);
+}
+function downloadJSON(key, filename){
+  const rows = exportRows(key);
+  if (!rows.length){ alert("No rows to export — clear the filter first."); return; }
+  const payload = {meta: Object.assign({}, views[key].meta, {origin: metaText(key)}), rows: rows};
+  triggerDownload(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}), filename);
+}
+function triggerDownload(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ───────────────────────── Routing + nav ───────────────────────── */
+function route(){
+  const key = location.hash.replace(/^#/,"");
+  showPanel(APPS[key] ? key : "");
+  // collapse the mobile menu after navigating
+  const ng = document.getElementById("navGroups");
+  if (window.innerWidth <= 768) ng.classList.remove("open");
+}
+window.addEventListener("hashchange", route);
+document.getElementById("navToggle").addEventListener("click", function(){
+  document.getElementById("navGroups").classList.toggle("open");
+});
+route();
+</script>
+</body>
+</html>

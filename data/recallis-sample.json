@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "app": "Recallis",
+    "query": "metformin",
+    "captured_at": "2026-07-19",
+    "source": "openFDA drug enforcement",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "product": "Synjardy XR Tablets (empagliflozin and metformin hydrochloride extended-release tablets), 12.5/1000 mg, 60 Tablets per Bottle, Rx only, Dis…",
+      "recalling_firm": "Boehringer Ingelheim Pharmaceuticals, Inc.",
+      "classification": "Class II",
+      "status": "Ongoing",
+      "reason": "CGMP Deviations: An incorrect detergent was used and the required swab sampling was not performed on a production hopper that had previously been used for a di…",
+      "initiated": "20260612",
+      "state": "CT"
+    },
+    {
+      "product": "Metformin Hydrochloride Extended-Release Tablets 1000mg, 90-count bottle. Manufactured by: Glenmark Pharmaceuticals Limited, Pithampur, Mad…",
+      "recalling_firm": "Glenmark Pharmaceuticals Inc., USA",
+      "classification": "Class II",
+      "status": "Ongoing",
+      "reason": "CGMP Deviations",
+      "initiated": "20250313",
+      "state": "NJ"
+    },
+    {
+      "product": "METFORMIN HYDROCHLORIDE EXTENDED- RELEASE 500MG, 180 TABLETS, Packaged BY: A-S Medication Solutions, Libertyville, IL 60048 NDC 50090-1494-…",
+      "recalling_firm": "A-S Medication Solutions LLC",
+      "classification": "Class II",
+      "status": "Ongoing",
+      "reason": "Presence of Foreign Tablets/Capsules.",
+      "initiated": "20250225",
+      "state": "IL"
+    },
+    {
+      "product": "Metformin Hydrochloride Extended-Release Tablets, USP, 500 mg, 1000-count bottles, Rx Only, Manufactured by: Granules India Limited, Hydera…",
+      "recalling_firm": "Granules Pharmaceuticals Inc.",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "Presence of Foreign Tablets/Capsules: A Paracetamol 500 mg tablet was found in a 1000-count bottle of Metformin HCL ER Tablets USP, 500 mg.",
+      "initiated": "20241230",
+      "state": "VA"
+    },
+    {
+      "product": "Metformin hydrochloride Extended-Release Tablets, 1000 mg, 60-count bottle, RX only, Manufactured by: Actavis Laboratories FL, Inc., Fort L…",
+      "recalling_firm": "Teva Pharmaceuticals USA Inc",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "CGMP Deviations: Detection of N-Nitrosodimethylamine (NDMA) levels in excess of the Acceptable Daily Intake Limit.",
+      "initiated": "20230222",
+      "state": "NJ"
+    },
+    {
+      "product": "Janumet (sitagliptin and metformin HCl) tablets, 50 mg/500 mg, 14-count bottle, packaged as 2 bottles per carton , Sample-Not For Sale, Rx …",
+      "recalling_firm": "MERCK SHARP & DOHME CORP",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "Presence of foreign substance: Presence of stainless steel particulates in tablets.",
+      "initiated": "20220331",
+      "state": "NJ"
+    },
+    {
+      "product": "Metformin 750 mg Extended Release  NDC # 70518-2920-00",
+      "recalling_firm": "RemedyRepack Inc.",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "CGMP Deviations: Detection of N-Nitrosodimethylamine (NDMA) levels in excess of the Acceptable Daily Intake Limit.",
+      "initiated": "20211230",
+      "state": "PA"
+    },
+    {
+      "product": "Metformin Hydrochloride Extended-Release Tablets, USP 750 mg, 100 count HDPE bottles  NDC# 72578-036-01",
+      "recalling_firm": "VIONA PHARMACEUTICALS INC",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "CGMP Deviations- Detection of N-Nitrosodimethylamine (NDMA) levels in excess of the Acceptable Daily Intake Limit.",
+      "initiated": "20211227",
+      "state": "NJ"
+    },
+    {
+      "product": "Metformin Hydrochloride Extended-Release Tablets, USP 750 mg, 100 Tablets, Rx only, Manufactured by: Cadila Healthcare Ltd. Ahmedabad, Indi…",
+      "recalling_firm": "VIONA PHARMACEUTICALS INC",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "CGMP Deviations: Detection of N-Nitrosodimethylamine (NDMA) levels in excess of the Acceptable Daily Intake Limit.",
+      "initiated": "20210601",
+      "state": "NJ"
+    },
+    {
+      "product": "Metformin HCl Extended-Release Tablets, USP, 500 mg, packaged in 500-count bottles, Rx only, Distributed by: Sun Pharmaceutical Industries,…",
+      "recalling_firm": "SUN PHARMACEUTICAL INDUSTRIES INC",
+      "classification": "Class II",
+      "status": "Terminated",
+      "reason": "Presence of foreign substance: identified as activated carbon.",
+      "initiated": "20210504",
+      "state": "NJ"
+    }
+  ]
+}

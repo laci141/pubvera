@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "app": "Corpova",
+    "query": "statins reduce cardiovascular mortality",
+    "captured_at": "2026-07-19",
+    "source": "OpenAlex",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "title": "Statins for the primary prevention of cardiovascular disease",
+      "year": 2013,
+      "doi": "10.1002/14651858.cd004816.pub5",
+      "design": "meta-analysis",
+      "stance": "supporting",
+      "stance_confidence": 0.79,
+      "citations": 1836
+    },
+    {
+      "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias: <i>lipid modification to reduce cardiovascular risk</i>",
+      "year": 2019,
+      "doi": "10.1093/eurheartj/ehz455",
+      "design": "unclassified",
+      "stance": "supporting",
+      "stance_confidence": 0.9,
+      "citations": 8997
+    },
+    {
+      "title": "Global Burden of Cardiovascular Diseases and Risk Factors, 1990–2019",
+      "year": 2020,
+      "doi": "10.1016/j.jacc.2020.11.010",
+      "design": "narrative-review",
+      "stance": "supporting",
+      "stance_confidence": 0.9,
+      "citations": 11253
+    },
+    {
+      "title": "Ezetimibe Added to Statin Therapy after Acute Coronary Syndromes",
+      "year": 2015,
+      "doi": "10.1056/nejmoa1410489",
+      "design": "randomized-controlled-trial",
+      "stance": "supporting",
+      "stance_confidence": 0.8,
+      "citations": 4436
+    },
+    {
+      "title": "Evolocumab and Clinical Outcomes in Patients with Cardiovascular Disease",
+      "year": 2017,
+      "doi": "10.1056/nejmoa1615664",
+      "design": "randomized-controlled-trial",
+      "stance": "supporting",
+      "stance_confidence": 0.8,
+      "citations": 6037
+    },
+    {
+      "title": "Intensive versus Moderate Lipid Lowering with Statins after Acute Coronary Syndromes",
+      "year": 2004,
+      "doi": "10.1056/nejmoa040583",
+      "design": "randomized-controlled-trial",
+      "stance": "supporting",
+      "stance_confidence": 0.9,
+      "citations": 4946
+    },
+    {
+      "title": "Effects of long-term fenofibrate therapy on cardiovascular events in 9795 people with type 2 diabetes mellitus (the FIELD study): randomised controlled trial",
+      "year": 2005,
+      "doi": "10.1016/s0140-6736(05)67667-2",
+      "design": "randomized-controlled-trial",
+      "stance": "inconclusive",
+      "stance_confidence": 0.2,
+      "citations": 3290
+    },
+    {
+      "title": "Rosuvastatin and Cardiovascular Events in Patients Undergoing Hemodialysis",
+      "year": 2009,
+      "doi": "10.1056/nejmoa0810177",
+      "design": "randomized-controlled-trial",
+      "stance": "refuting",
+      "stance_confidence": 0.8,
+      "citations": 2029
+    },
+    {
+      "title": "Statin Use and Reduced Cancer-Related Mortality",
+      "year": 2012,
+      "doi": "10.1056/nejmoa1201735",
+      "design": "unclassified",
+      "stance": "supporting",
+      "stance_confidence": 0.9,
+      "citations": 1017
+    },
+    {
+      "title": "The benefits of statins in people without established cardiovascular disease but with cardiovascular risk factors: meta-analysis of randomised controlled trials",
+      "year": 2009,
+      "doi": "10.1136/bmj.b2376",
+      "design": "meta-analysis",
+      "stance": "mixed",
+      "stance_confidence": 0.52,
+      "citations": 796
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "app": "Grantvera",
+    "query": "alzheimer",
+    "captured_at": "2026-07-19",
+    "source": "NIH RePORTER",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "project": "1UF1AG046150-01",
+      "title": "Alzheimer's Prevention Initiative APOE4 Trial",
+      "pi": "REIMAN, ERIC MICHAEL",
+      "organization": "BANNER ALZHEIMER'S INSTITUTE",
+      "award_amount": 33260235,
+      "fiscal_year": 2013
+    },
+    {
+      "project": "5U19AG024904-17",
+      "title": "Alzheimer's Disease Neuroimaging Initiative (ADNI4)",
+      "pi": "WEINER, MICHAEL W",
+      "organization": "NORTHERN CALIFORNIA INSTITUTE/RES/EDU",
+      "award_amount": 32887320,
+      "fiscal_year": 2023
+    },
+    {
+      "project": "5U19AG078109-04",
+      "title": "The Health & Aging Brain Study - Health Disparities (HABS-HD)",
+      "pi": "O'BRYANT, SID E",
+      "organization": "UNIVERSITY OF NORTH TEXAS HLTH SCI CTR",
+      "award_amount": 31789574,
+      "fiscal_year": 2025
+    },
+    {
+      "project": "1R01AG078457-01A1",
+      "title": "The Alzheimer's Disease Tau Platform Clinical Trial",
+      "pi": "BOXER, ADAM L.",
+      "organization": "UNIVERSITY OF CALIFORNIA, SAN FRANCISCO",
+      "award_amount": 30887229,
+      "fiscal_year": 2023
+    },
+    {
+      "project": "1U01AG082350-01A1",
+      "title": "ADRC Consortium for Clarity in ADRD Research Through Imaging",
+      "pi": "JOHNSON, STERLING C",
+      "organization": "UNIVERSITY OF WISCONSIN-MADISON",
+      "award_amount": 30800018,
+      "fiscal_year": 2023
+    },
+    {
+      "project": "1ZIBTR000002-03",
+      "title": "Preclinical Innovation",
+      "pi": "MCKEW, JOHN ",
+      "organization": "NATIONAL CENTER FOR ADVANCING TRANSLATIONAL SCIENCES",
+      "award_amount": 30713573,
+      "fiscal_year": 2014
+    },
+    {
+      "project": "2U19AG024904-16",
+      "title": "Alzheimer's Disease Neuroimaging Initiative (ADNI4)",
+      "pi": "WEINER, MICHAEL W",
+      "organization": "NORTHERN CALIFORNIA INSTITUTE/RES/EDU",
+      "award_amount": 30393525,
+      "fiscal_year": 2022
+    },
+    {
+      "project": "1ZIIAG000532-01",
+      "title": "Temporary CARD Facility",
+      "pi": "FERRUCCI, LUIGI ",
+      "organization": "NATIONAL INSTITUTE ON AGING",
+      "award_amount": 30290892,
+      "fiscal_year": 2020
+    },
+    {
+      "project": "5R01AG078457-02",
+      "title": "The Alzheimer's Disease Tau Platform Clinical Trial",
+      "pi": "BOXER, ADAM L.",
+      "organization": "UNIVERSITY OF CALIFORNIA, SAN FRANCISCO",
+      "award_amount": 29813375,
+      "fiscal_year": 2024
+    },
+    {
+      "project": "5U01AG082350-02",
+      "title": "ADRC Consortium for Clarity in ADRD Research Through Imaging",
+      "pi": "JOHNSON, STERLING C",
+      "organization": "UNIVERSITY OF WISCONSIN-MADISON",
+      "award_amount": 29557545,
+      "fiscal_year": 2024
+    }
+  ]
+}

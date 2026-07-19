@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "app": "Retractis",
+    "query": "hydroxychloroquine",
+    "captured_at": "2026-07-19",
+    "source": "Crossref (retractions & expressions of concern)",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "title": "Hydroxychloroquine",
+      "doi": "10.1007/springerreference_41405",
+      "type": "reference-entry",
+      "journal": "SpringerReference",
+      "year": "",
+      "cited_by": 0
+    },
+    {
+      "title": "Hydroxychloroquine Sulfate",
+      "doi": "10.31003/uspnf_m38900_03_01",
+      "type": "standard",
+      "journal": "",
+      "year": "",
+      "cited_by": 0
+    },
+    {
+      "title": "Hydroxychloroquine",
+      "doi": "10.1007/springerreference_38558",
+      "type": "reference-entry",
+      "journal": "SpringerReference",
+      "year": "",
+      "cited_by": 0
+    },
+    {
+      "title": "hydroxychloroquine sulfate",
+      "doi": "10.18578/bnf.927428897",
+      "type": "component",
+      "journal": "",
+      "year": "",
+      "cited_by": 0
+    },
+    {
+      "title": "Hydroxychloroquine see Aurothioglucose/sulfasalazine/hydroxychloroquine",
+      "doi": "10.2165/00128415-199003270-00029",
+      "type": "journal-article",
+      "journal": "Reactions Weekly",
+      "year": 1990,
+      "cited_by": 0
+    },
+    {
+      "title": "Screening for Hydroxychloroquine and Chloroquine Retinopathy",
+      "doi": "10.1007/978-1-4939-0597-3_9",
+      "type": "book-chapter",
+      "journal": "Hydroxychloroquine and Chloroquine Retinopathy",
+      "year": 2014,
+      "cited_by": 0
+    },
+    {
+      "title": "Hydroxychloroquine Sulfate Tablets",
+      "doi": "10.31003/uspnf_m38910_03_01",
+      "type": "standard",
+      "journal": "",
+      "year": "",
+      "cited_by": 0
+    },
+    {
+      "title": "Hydroxychloroquine sulfate",
+      "doi": "10.1007/springerreference_38559",
+      "type": "reference-entry",
+      "journal": "SpringerReference",
+      "year": "",
+      "cited_by": 0
+    },
+    {
+      "title": "Pharmacology of Chloroquine and Hydroxychloroquine",
+      "doi": "10.1007/978-1-4939-0597-3_2",
+      "type": "book-chapter",
+      "journal": "Hydroxychloroquine and Chloroquine Retinopathy",
+      "year": 2014,
+      "cited_by": 110
+    },
+    {
+      "title": "Hydroxychloroquine",
+      "doi": "10.1007/s40278-021-93961-5",
+      "type": "journal-article",
+      "journal": "Reactions Weekly",
+      "year": 2021,
+      "cited_by": 0
+    }
+  ]
+}

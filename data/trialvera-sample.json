@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "app": "Trialvera",
+    "query": "melanoma",
+    "captured_at": "2026-07-19",
+    "source": "ClinicalTrials.gov",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "nct_id": "NCT01278940",
+      "title": "Trial of Vaccine Therapy With mRNA- Transfected Dendritic Cells in Patients With Advanced Malignant Melanoma",
+      "status": "COMPLETED",
+      "phase": "PHASE1/PHASE2",
+      "conditions": "Malignant Melanoma"
+    },
+    {
+      "nct_id": "NCT01864759",
+      "title": "Phase I Endovenous Administration of Oncolytic Adenovirus ICOVIR-5 in Patients With Advanced or Metastatic Melanoma",
+      "status": "COMPLETED",
+      "phase": "PHASE1",
+      "conditions": "Locally Advanced or Metastatic Melanoma"
+    },
+    {
+      "nct_id": "NCT01216696",
+      "title": "Ipilimumab in Patients With Advanced Melanoma and Spontaneous Preexisting Immune Response to NY-ESO-1",
+      "status": "COMPLETED",
+      "phase": "PHASE2",
+      "conditions": "Metastatic Melanoma"
+    },
+    {
+      "nct_id": "NCT07504796",
+      "title": "ctDNA-guided Addition of Ipilimumab to Patients Receiving Nivolumab and Relatlimab",
+      "status": "RECRUITING",
+      "phase": "PHASE4",
+      "conditions": "Metastatic Melanoma; Advanced Melanoma"
+    },
+    {
+      "nct_id": "NCT01970527",
+      "title": "Phase II Trial of Stereotactic Body Radiotherapy Followed by Ipilimumab in Treating Patients With Stage IV Melanoma",
+      "status": "TERMINATED",
+      "phase": "PHASE2",
+      "conditions": "Recurrent Melanoma; Stage IV Skin Melanoma"
+    },
+    {
+      "nct_id": "NCT06863870",
+      "title": "Assessment of Circulating Tumor Cells and microRNAs in Patients With Metastatic Non-cutaneous Melanoma",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "conditions": "Melanoma Neoplasms"
+    },
+    {
+      "nct_id": "NCT03092453",
+      "title": "Dendritic Cell Vaccination in Patients With Advanced Melanoma",
+      "status": "COMPLETED",
+      "phase": "PHASE1",
+      "conditions": "Melanoma"
+    },
+    {
+      "nct_id": "NCT00722228",
+      "title": "Autologous and Allogeneic Whole Cell Cancer Vaccine for Metastatic Tumors",
+      "status": "RECRUITING",
+      "phase": "PHASE1/PHASE2",
+      "conditions": "Colorectal Cancer; Ovarian Cancer; Gastric Cancer; Breast Cancer; Lung Cancer; Kidney Cancer; Melanoma"
+    },
+    {
+      "nct_id": "NCT00685750",
+      "title": "Expression Analysis of Specific Markers in Non-small Cell Lung Cancer or Melanoma",
+      "status": "TERMINATED",
+      "phase": "NA",
+      "conditions": "Lung Cancer, Non-Small Cell"
+    },
+    {
+      "nct_id": "NCT03237013",
+      "title": "Strategies to Promote Skin Health",
+      "status": "COMPLETED",
+      "phase": "NA",
+      "conditions": "Skin Cancer; Skin Cancer Melanoma; Squamous Cell Carcinoma; Basal Cell Carcinoma"
+    }
+  ]
+}

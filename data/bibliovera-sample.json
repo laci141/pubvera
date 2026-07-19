@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "app": "Bibliovera",
+    "query": "top authors, min 3 works",
+    "captured_at": "2026-07-19",
+    "source": "OpenAlex (The Lancet corpus, local mirror)",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "author": "Rajaa Al‐Raddadi",
+      "works": 21,
+      "total_citations": 48360,
+      "avg_citations": 2302.9
+    },
+    {
+      "author": "Fares Alahdab",
+      "works": 25,
+      "total_citations": 39455,
+      "avg_citations": 1578.2
+    },
+    {
+      "author": "Till Bärnighausen",
+      "works": 49,
+      "total_citations": 37852,
+      "avg_citations": 772.5
+    },
+    {
+      "author": "Ala’a Alkerwi",
+      "works": 12,
+      "total_citations": 37094,
+      "avg_citations": 3091.2
+    },
+    {
+      "author": "Isabela M. Benseñor",
+      "works": 16,
+      "total_citations": 36961,
+      "avg_citations": 2310.1
+    },
+    {
+      "author": "Foad Abd-Allah",
+      "works": 15,
+      "total_citations": 34983,
+      "avg_citations": 2332.2
+    },
+    {
+      "author": "Johan Ärnlöv",
+      "works": 17,
+      "total_citations": 34296,
+      "avg_citations": 2017.4
+    },
+    {
+      "author": "Ziyad Al‐Aly",
+      "works": 36,
+      "total_citations": 33399,
+      "avg_citations": 927.8
+    },
+    {
+      "author": "Suzanne Barker‐Collo",
+      "works": 8,
+      "total_citations": 31770,
+      "avg_citations": 3971.3
+    },
+    {
+      "author": "Kalpana Balakrishnan",
+      "works": 9,
+      "total_citations": 31712,
+      "avg_citations": 3523.6
+    }
+  ]
+}

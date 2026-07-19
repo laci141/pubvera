@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "app": "Devicera",
+    "query": "stent",
+    "captured_at": "2026-07-19",
+    "source": "openFDA device listing / GUDID",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "device_name": "Single Use Biliary Drainage Stent V",
+      "company": "OLYMPUS MEDICAL SYSTEMS CORP.",
+      "device_class": "Class II",
+      "product_category": "Stents, Drains And Dilators For The Biliary Ducts",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2025-11-24"
+    },
+    {
+      "device_name": "RelayPro Thoracic Stent-Graft System",
+      "company": "Bolton Medical Inc.",
+      "device_class": "Class III",
+      "product_category": "System, Endovascular Graft, Aortic Aneurysm Treatment",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2024-12-31"
+    },
+    {
+      "device_name": "Percuflex™ Urinary Diversion Stent Set",
+      "company": "BOSTON SCIENTIFIC CORPORATION",
+      "device_class": "Unclassified",
+      "product_category": "Catheter, Nephrostomy",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2018-03-29"
+    },
+    {
+      "device_name": "Relay Thoracic Stent-Graft with Plus Delivery System",
+      "company": "Bolton Medical Inc.",
+      "device_class": "Class III",
+      "product_category": "System, Endovascular Graft, Aortic Aneurysm Treatment",
+      "listing_status": "Not in Commercial Distribution",
+      "last_update": "2024-12-11"
+    },
+    {
+      "device_name": "Nephro-Stent Nephroureteral Stent Catheter",
+      "company": "URESIL, LLC",
+      "device_class": "Unclassified",
+      "product_category": "Catheter, Nephrostomy",
+      "listing_status": "Not in Commercial Distribution",
+      "last_update": "2022-04-29"
+    },
+    {
+      "device_name": "RelayPro Thoracic Stent-Graft System",
+      "company": "Bolton Medical Inc.",
+      "device_class": "Class III",
+      "product_category": "System, Endovascular Graft, Aortic Aneurysm Treatment",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2024-12-11"
+    },
+    {
+      "device_name": "Bard® InLay Optima® Ureteral Stent",
+      "company": "C. R. Bard, Inc.",
+      "device_class": "Class II",
+      "product_category": "Stent, Ureteral",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2018-03-29"
+    },
+    {
+      "device_name": "Aorfix AAA Stent Graft Body with Aorflex Delivery System",
+      "company": "LOMBARD MEDICAL LIMITED",
+      "device_class": "Class III",
+      "product_category": "System, Endovascular Graft, Aortic Aneurysm Treatment",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2025-09-24"
+    },
+    {
+      "device_name": "PALMAZ MULLINS XD Pulmonary Stent",
+      "company": "Cordis US Corp.",
+      "device_class": "Class III",
+      "product_category": "Pulmonary Stent",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2025-06-09"
+    },
+    {
+      "device_name": "LifeStent® XL Vascular & Biliary Stent",
+      "company": "Bard Peripheral Vascular, Inc.",
+      "device_class": "Class III",
+      "product_category": "Stent, Superficial Femoral Artery",
+      "listing_status": "In Commercial Distribution",
+      "last_update": "2024-12-11"
+    }
+  ]
+}

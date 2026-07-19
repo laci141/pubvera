@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "app": "Praxvera",
+    "query": "sepsis",
+    "captured_at": "2026-07-19",
+    "source": "OpenAlex",
+    "note": "Sample of 10 rows from a live query — refreshed periodically."
+  },
+  "rows": [
+    {
+      "title": "Early Goal-Directed Therapy in the Treatment of Severe Sepsis and Septic Shock",
+      "authors": "Emanuel P. Rivers, Bryant Nguyen, Suzanne Havstad, Julie A. Ressler et al.",
+      "journal": "New England Journal of Medicine",
+      "year": 2001,
+      "doi": "10.1056/nejmoa010307",
+      "citations": 10795,
+      "open_access": true
+    },
+    {
+      "title": "Efficacy and Safety of Recombinant Human Activated Protein C for Severe Sepsis",
+      "authors": "Gordon R. Bernard, Jean‐Louis Vincent, Pierre‐François Laterre, Steven P. LaRosa et al.",
+      "journal": "New England Journal of Medicine",
+      "year": 2001,
+      "doi": "10.1056/nejm200103083441001",
+      "citations": 6154,
+      "open_access": true
+    },
+    {
+      "title": "<i>Staphylococcus aureus</i>Infections",
+      "authors": "F D Lowy",
+      "journal": "New England Journal of Medicine",
+      "year": 1998,
+      "doi": "10.1056/nejm199808203390806",
+      "citations": 6038,
+      "open_access": false
+    },
+    {
+      "title": "The Epidemiology of Sepsis in the United States from 1979 through 2000",
+      "authors": "Greg S. Martin, David M. Mannino, Stephanie Eaton, Marc Moss",
+      "journal": "New England Journal of Medicine",
+      "year": 2003,
+      "doi": "10.1056/nejmoa022139",
+      "citations": 5886,
+      "open_access": true
+    },
+    {
+      "title": "The Pathophysiology and Treatment of Sepsis",
+      "authors": "Richard S. Hotchkiss, Irene E. Karl",
+      "journal": "New England Journal of Medicine",
+      "year": 2003,
+      "doi": "10.1056/nejmra021333",
+      "citations": 4122,
+      "open_access": false
+    },
+    {
+      "title": "Severe Sepsis and Septic Shock",
+      "authors": "Derek C. Angus, Tom van der Poll",
+      "journal": "New England Journal of Medicine",
+      "year": 2013,
+      "doi": "10.1056/nejmra1208623",
+      "citations": 3972,
+      "open_access": true
+    },
+    {
+      "title": "Platinum-Based Chemotherapy plus Cetuximab in Head and Neck Cancer",
+      "authors": "Jan B. Vermorken, Ricard Mesı́a, Fernando Rivera, Éva Remenár et al.",
+      "journal": "New England Journal of Medicine",
+      "year": 2008,
+      "doi": "10.1056/nejmoa0802656",
+      "citations": 3727,
+      "open_access": true
+    },
+    {
+      "title": "Intensive Insulin Therapy and Pentastarch Resuscitation in Severe Sepsis",
+      "authors": "Frank M. Brunkhorst, Christoph Engel, Frank Bloos, Andreas Meier‐Hellmann et al.",
+      "journal": "New England Journal of Medicine",
+      "year": 2008,
+      "doi": "10.1056/nejmoa070716",
+      "citations": 2933,
+      "open_access": true
+    },
+    {
+      "title": "Intraaortic Balloon Support for Myocardial Infarction with Cardiogenic Shock",
+      "authors": "Hölger Thiele, Uwe Zeymer, Franz–Josef Neumann, Mirosław Ferenc et al.",
+      "journal": "New England Journal of Medicine",
+      "year": 2012,
+      "doi": "10.1056/nejmoa1208410",
+      "citations": 2807,
+      "open_access": true
+    },
+    {
+      "title": "A Comparison of Continuous Intravenous Epoprostenol (Prostacyclin) with Conventional Therapy for Primary Pulmonary Hypertension",
+      "authors": "Robyn J. Barst, Lewis J. Rubin, Walker Long, Michael D. McGoon et al.",
+      "journal": "New England Journal of Medicine",
+      "year": 1996,
+      "doi": "10.1056/nejm199602013340504",
+      "citations": 2701,
+      "open_access": true
+    }
+  ]
+}
