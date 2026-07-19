@@ -60,19 +60,27 @@ nav.side{
   padding:1.1rem;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
   box-shadow:0 8px 32px rgba(0,0,0,.3);
 }
-.navgroup{margin-bottom:1rem}
+.navgroup{margin-bottom:1.4rem}
 .navgroup h3{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+/* Menu items reuse the overview-card glass recipe, scaled down: same
+   white-alpha gradient, inset top light edge and drop shadow, smaller radii. */
 .navgroup a{
-  display:block;padding:.42rem .65rem;border-radius:.55rem;color:var(--ink);
-  text-decoration:none;font-size:.92rem;margin-bottom:.28rem;
-  background:var(--glass);border:1px solid var(--glass-border);
-  box-shadow:inset 0 1px 0 var(--glass-border);
-  transition:background .15s,border-color .15s,box-shadow .15s;
+  display:block;padding:.38rem .65rem;border-radius:.55rem;color:var(--ink);
+  text-decoration:none;font-size:.92rem;margin-bottom:.53rem;
+  background:linear-gradient(165deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 12px rgba(0,0,0,.28),inset 0 1px 0 var(--glass-border);
+  transition:box-shadow .15s,border-color .15s,background .15s;
 }
-.navgroup a:hover{background:var(--glass-strong);border-color:var(--glass-glow)}
+.navgroup a:last-child{margin-bottom:0}
+.navgroup a:hover{
+  border-color:var(--glass-glow);
+  box-shadow:0 0 0 1px var(--glass-border),0 6px 16px var(--glass-glow),
+    0 4px 12px rgba(0,0,0,.3),inset 0 0 16px rgba(255,255,255,.03);
+}
 .navgroup a.active{
-  background:var(--glass-strong);border-color:var(--accent);
-  color:var(--accent);font-weight:600;
+  background:linear-gradient(165deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  border-color:var(--accent);color:var(--accent);font-weight:600;
   box-shadow:0 4px 14px var(--glass-glow),inset 0 1px 0 var(--glass-border);
 }
 #navToggle{display:none;width:100%;background:var(--glass-strong);border:1px solid var(--glass-border);
@@ -147,6 +155,8 @@ footer.site a{color:var(--muted)}
     backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px)}
   main.panel{padding:1rem;backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px)}
   #navToggle{display:block}
+  .navgroup{margin-bottom:1.1rem}
+  .navgroup a{margin-bottom:.4rem}
   #navGroups{display:none}
   #navGroups.open{display:block}
   .meta-row{flex-direction:column;align-items:flex-start}
