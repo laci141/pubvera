@@ -20,6 +20,9 @@
   --glass-strong:rgba(255,255,255,0.09);
   --glass-border:rgba(255,255,255,0.12);
   --glass-glow:rgba(120,160,255,0.18);
+  --orb-1:rgba(37,99,235,0.35);
+  --orb-2:rgba(129,140,248,0.28);
+  --orb-3:rgba(14,165,165,0.22);
   --ink:#e8edf7; --muted:#99a3b8;
   --accent:#60a5fa; --good:#22c55e; --warn:#eab308;
   --mono:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",monospace;
@@ -27,19 +30,21 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html{background:var(--bg-a)}
 body{
-  background:var(--bg-a);color:var(--ink);min-height:100vh;
+  background:linear-gradient(160deg,var(--bg-a),var(--bg-b));
+  color:var(--ink);min-height:100vh;position:relative;overflow-x:hidden;
   font-family:var(--sans);line-height:1.55;
 }
-/* Colored gradient backdrop — required so the glass blur is visible */
+/* Blurred color orbs behind the glass layers (same recipe as Devicera) —
+   the backdrop blur needs strong color variation behind it to be visible. */
 body::before{
-  content:"";position:fixed;inset:0;z-index:-1;
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  filter:blur(90px);
   background:
-    radial-gradient(circle at 15% 20%,rgba(0,212,255,.16),transparent 40%),
-    radial-gradient(circle at 85% 15%,rgba(124,58,237,.16),transparent 40%),
-    radial-gradient(circle at 25% 85%,rgba(34,197,94,.12),transparent 40%),
-    radial-gradient(circle at 75% 80%,rgba(96,165,250,.14),transparent 40%),
-    linear-gradient(135deg,var(--bg-a) 0%,var(--bg-b) 100%);
+    radial-gradient(circle 480px at -20px -40px,var(--orb-1),transparent 70%),
+    radial-gradient(circle 420px at 100% 35%,var(--orb-2),transparent 70%),
+    radial-gradient(circle 380px at 35% 105%,var(--orb-3),transparent 70%);
 }
 a{color:var(--accent)}
 .wrap{max-width:1280px;margin:0 auto;padding:1.2rem}
