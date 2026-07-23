@@ -100,7 +100,6 @@ main.panel{
   border-radius:999px;font-size:.95rem;box-shadow:0 4px 18px rgba(96,165,250,.35);
 }
 .openbtn:hover{filter:brightness(1.12)}
-.wakehint{display:block;color:var(--muted);font-size:.78rem;margin-top:.4rem;margin-bottom:1.1rem}
 .panel h4{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:1.1rem 0 .35rem}
 .panel ul{padding-left:1.2rem;font-size:.92rem}
 .panel ul li{margin-bottom:.2rem}
@@ -210,7 +209,6 @@ const APPS = {
     name: "Bibliovera",
     tagline: "Journal bibliometrics — institution growth, author rankings and topic trends across the medical literature.",
     url: "https://bibliovera.pubvera.com/",
-    health: "healthz",
     what: [
       "Ranks authors and institutions across a full journal corpus (The Lancet)",
       "Tracks topic drift and MeSH-style trends over decades",
@@ -224,7 +222,6 @@ const APPS = {
     name: "Praxvera",
     tagline: "Clinical literature search — 190,000+ clinical research articles from 1990 to today, with full abstracts.",
     url: "https://praxvera.pubvera.com/",
-    health: "healthz",
     what: [
       "Full-text search over clinical research articles via OpenAlex",
       "Filters by year range, sorts by citations or recency",
@@ -238,7 +235,6 @@ const APPS = {
     name: "Corpova",
     tagline: "Evidence consensus analysis — claim-level verdicts computed from the scientific literature.",
     url: "https://corpova.pubvera.com/",
-    health: "",
     what: [
       "Enter a claim, get a transparent consensus verdict with a score",
       "Classifies each study as supporting, refuting, mixed or inconclusive",
@@ -252,7 +248,6 @@ const APPS = {
     name: "Trialvera",
     tagline: "Clinical trial search and analysis — registry data enriched with publications and FDA safety signals.",
     url: "https://trialvera.pubvera.com/",
-    health: "healthz",
     what: [
       "Search and filter trials from ClinicalTrials.gov",
       "Risk reads, completion forecasts and enrollment plausibility per trial",
@@ -266,7 +261,6 @@ const APPS = {
     name: "Devicera",
     tagline: "Medical device intelligence — registrations, UDI codes and FDA regulatory status.",
     url: "https://devicera.pubvera.com/",
-    health: "api/health",
     what: [
       "Search device registrations and listings by brand or category",
       "UDI / GUDID lookups and device classification",
@@ -280,7 +274,6 @@ const APPS = {
     name: "Retractis",
     tagline: "Retraction and research-integrity checker — is a paper retracted, and what supersedes it?",
     url: "https://retractis.pubvera.com/",
-    health: "healthz",
     what: [
       "Check any DOI against known retractions and expressions of concern",
       "Search retracted literature by topic",
@@ -294,7 +287,6 @@ const APPS = {
     name: "Recallis",
     tagline: "Drug recall and enforcement search — FDA recalls by drug, firm or classification.",
     url: "https://recallis.pubvera.com/",
-    health: "healthz",
     what: [
       "Check a drug name against FDA enforcement reports",
       "Search recalls by firm or recall classification (Class I–III)",
@@ -308,7 +300,6 @@ const APPS = {
     name: "Grantvera",
     tagline: "Research grant and funding search across NIH, NSF and Grants.gov.",
     url: "https://grantvera.pubvera.com/",
-    health: "healthz",
     what: [
       "Search awarded grants by keyword across three federal sources",
       "Filter by minimum award amount and fiscal year",
@@ -326,21 +317,6 @@ const GROUP_OF = {
   retractis:"Safety & integrity", recallis:"Safety & integrity",
   grantvera:"Funding"
 };
-
-/* ───────────────────────── Wake-on-intent ─────────────────────────
-   When the visitor opens an app panel, silently ping that app's Render
-   instance so it is warm by the time they click through. no-cors means we
-   need no CORS headers app-side; we only care that the request lands.
-   Once per app per session, never on a timer. */
-const woken = new Set();
-function wakeApp(key){
-  if (woken.has(key)) return;
-  woken.add(key);
-  const app = APPS[key];
-  try {
-    fetch(app.url + app.health, {mode:"no-cors", cache:"no-store"}).catch(function(){});
-  } catch(e){ /* silent by design */ }
-}
 
 /* ───────────────────────── Sample data + WYSIWYG views ─────────────────────────
    registerView stores, per app, the full sample rows and the current filter.
@@ -419,7 +395,6 @@ function panelHTML(key){
   let h = "<h2>" + esc(app.name) + "</h2>";
   h += "<p class=\"sub\">" + esc(app.tagline) + "</p>";
   h += "<a class=\"openbtn\" href=\"" + app.url + "\" target=\"_blank\" rel=\"noopener noreferrer\">▶ Open live app ↗</a>";
-  h += "<span class=\"wakehint\">First load may take up to a minute — the app wakes on demand.</span>";
   h += "<h4>What it does</h4><ul>";
   app.what.forEach(w => h += "<li>" + esc(w) + "</li>");
   h += "</ul>";
@@ -454,7 +429,6 @@ async function showPanel(key){
     panel.innerHTML = overviewHTML();
     return;
   }
-  wakeApp(key);
   panel.innerHTML = panelHTML(key);
   const data = await loadSample(key);
   const box = document.getElementById("sample_" + key);
