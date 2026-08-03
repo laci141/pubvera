@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 64" width="248" height="64" role="img" aria-label="Pubvera">
+<title>Pubvera</title>
+<style>
+.m { fill: #2563eb; }
+.wa { fill: #1e293b; }
+.wb { fill: #2563eb; }
+@media (prefers-color-scheme: dark) {
+.m { fill: #60a5fa; }
+.wa { fill: #e8edf7; }
+.wb { fill: #60a5fa; }
+}
+</style>
+<g class="m">
+<rect x="6.0" y="11.0" width="42.0" height="8.1" rx="3.7"/>
+<rect x="11.3" y="24.0" width="31.3" height="8.1" rx="3.7"/>
+<rect x="16.7" y="37.0" width="20.7" height="8.1" rx="3.7"/>
+<rect x="22.0" y="50.0" width="10.0" height="8.1" rx="3.7"/>
+<rect x="51" y="25.3" width="7" height="5.5" rx="2.75" opacity="0.55"/>
+<rect x="51" y="38.3" width="7" height="5.5" rx="2.75" opacity="0.70"/>
+<rect x="51" y="51.3" width="7" height="5.5" rx="2.75" opacity="0.88"/>
+</g>
+<text x="76" y="45" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" letter-spacing="0.6">
+<tspan class="wa">Pub</tspan><tspan class="wb">vera</tspan>
+</text>
+</svg>

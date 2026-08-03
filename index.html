@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="/pubvera-favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pubvera — Eight open-data research tools</title>
@@ -48,8 +50,9 @@ body::before{
 }
 a{color:var(--accent)}
 .wrap{max-width:1280px;margin:0 auto;padding:1.2rem}
-header.site{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:.6rem .2rem 1.1rem}
-.logo{font-size:1.7rem;font-weight:800;letter-spacing:.02em}
+header.site{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:.6rem .2rem 1.1rem}
+.logo{display:flex;align-items:center;gap:.55rem;font-size:1.7rem;font-weight:800;letter-spacing:.02em}
+.logo svg{width:2rem;height:2rem;flex-shrink:0;color:var(--accent)}
 .logo span{color:var(--accent)}
 .tagline{color:var(--muted);font-size:.95rem}
 .layout{display:flex;gap:1.2rem;align-items:flex-start}
@@ -165,7 +168,18 @@ footer.site a{color:var(--muted)}
 <body>
 <div class="wrap">
 <header class="site">
-  <div class="logo">Pub<span>vera</span></div>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+  <rect x="6.0" y="11.0" width="42.0" height="8.1" rx="3.7"/>
+  <rect x="11.3" y="24.0" width="31.3" height="8.1" rx="3.7"/>
+  <rect x="16.7" y="37.0" width="20.7" height="8.1" rx="3.7"/>
+  <rect x="22.0" y="50.0" width="10.0" height="8.1" rx="3.7"/>
+  <rect x="51" y="25.3" width="7" height="5.5" rx="2.75" opacity="0.55"/>
+  <rect x="51" y="38.3" width="7" height="5.5" rx="2.75" opacity="0.70"/>
+  <rect x="51" y="51.3" width="7" height="5.5" rx="2.75" opacity="0.88"/>
+</svg>
+    <b>Pub<span>vera</span></b>
+  </div>
   <div class="tagline">Eight open-data research tools for science, medicine and funding.</div>
 </header>
 

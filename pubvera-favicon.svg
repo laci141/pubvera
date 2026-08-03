@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Pubvera">
+<title>Pubvera</title>
+<style>
+.bg { fill: #2563eb; }
+@media (prefers-color-scheme: dark) { .bg { fill: #3b82f6; } }
+</style>
+<rect class="bg" width="64" height="64" rx="14"/>
+<g fill="#ffffff" transform="translate(32 32) scale(0.82) translate(-32 -32)">
+<rect x="6.0" y="11.0" width="42.0" height="8.1" rx="3.7"/>
+<rect x="11.3" y="24.0" width="31.3" height="8.1" rx="3.7"/>
+<rect x="16.7" y="37.0" width="20.7" height="8.1" rx="3.7"/>
+<rect x="22.0" y="50.0" width="10.0" height="8.1" rx="3.7"/>
+<rect x="51" y="25.3" width="7" height="5.5" rx="2.75" opacity="0.74"/>
+<rect x="51" y="38.3" width="7" height="5.5" rx="2.75" opacity="0.94"/>
+<rect x="51" y="51.3" width="7" height="5.5" rx="2.75" opacity="1.00"/>
+</g>
+</svg>
