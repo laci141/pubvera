@@ -2,3 +2,5 @@
 node_modules/
 .DS_Store
 *.bak
+# CI staging folder, never committed
+dist/

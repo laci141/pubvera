@@ -1,0 +1,111 @@
+name: Deploy hub
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# One run per ref at a time. A newer pull request run cancels the older one;
+# main runs queue instead, so two deploys never run at once, and because the
+# version step counts the tags already on origin, two overlapping main runs
+# would compute the same N.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Hub tests
+        run: |
+          set -euo pipefail
+          for t in tools/*_test.js; do node "$t"; done
+
+      - name: Sample data is valid JSON
+        run: |
+          node -e 'const fs=require("fs");let bad=0;for(const f of fs.readdirSync("data").filter((n)=>n.endsWith(".json"))){try{JSON.parse(fs.readFileSync("data/"+f,"utf8"));console.log("ok "+f)}catch(e){bad++;console.error("invalid JSON: data/"+f+": "+e.message)}}process.exit(bad?1:0)'
+
+  deploy:
+    needs: test
+    # Only main deploys; secrets are never used on pull requests.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # contents: write is needed for the tag and the release.
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # CalVer YYYY.MM.DD.N: the UTC date plus 1 + the number of tags
+      # vYYYY.MM.DD.* already on origin. The whole job is main-only, so the
+      # step needs no if:. pipefail stops the job if ls-remote fails, rather
+      # than counting zero tags and reusing N=1.
+      - name: Compute version
+        id: version
+        run: |
+          set -euo pipefail
+          D=$(date -u +%Y.%m.%d)
+          COUNT=$(git ls-remote --tags origin "refs/tags/v$D.*" | wc -l)
+          N=$((COUNT + 1))
+          echo "version=$D.$N" >> "$GITHUB_OUTPUT"
+          echo "version: $D.$N"
+
+      - name: Stage site
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: node tools/stage_dist.js dist
+
+      # No third-party deploy action on purpose: wrangler is pinned to an exact
+      # version and no extra code runs next to the token.
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: npx --yes wrangler@4.154.0 pages deploy dist --project-name pubvera --branch main --commit-hash "$GITHUB_SHA" --commit-message "release $VERSION" --commit-dirty=true
+
+      # pubvera.com is not used here because Cloudflare answers some automated
+      # clients with 403 (measured from the server on another day);
+      # pubvera.pages.dev serves the same production deployment.
+      - name: Verify live version
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -uo pipefail
+          for i in $(seq 1 12); do
+            LIVE=$(curl -fsS https://pubvera.pages.dev/version.json | jq -r .version || true)
+            if [ "$LIVE" = "$VERSION" ]; then
+              echo "live version: $LIVE"
+              exit 0
+            fi
+            echo "try $i/12: live version is '$LIVE', want '$VERSION'"
+            if [ "$i" -lt 12 ]; then sleep 10; fi
+          done
+          echo "pubvera.pages.dev/version.json never showed $VERSION; no tag or release created"
+          exit 1
+
+      # After the verify step, so a release never names a version that is not
+      # live. The first release has no earlier tag to diff against, so it gets
+      # fixed notes instead of --generate-notes.
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          if [ -z "$(gh release list --limit 1)" ]; then
+            gh release create "v$VERSION" --target "$GITHUB_SHA" --title "Hub $VERSION" --notes "Baseline release: first tracked release. Earlier history is in the commits."
+          else
+            gh release create "v$VERSION" --target "$GITHUB_SHA" --title "Hub $VERSION" --generate-notes
+          fi
