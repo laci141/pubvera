@@ -212,6 +212,7 @@ footer.site a{color:var(--muted)}
 <footer class="site">
   <div>Pubvera tools report public open data. They are not medical, legal or financial advice, and absence of a record is not evidence of absence.</div>
   <div><a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a> · <a href="https://github.com/laci141/pubvera" target="_blank" rel="noopener noreferrer">GitHub — laci141/pubvera</a></div>
+  <div><span id="app-version"></span></div>
 </footer>
 </div>
 
@@ -611,6 +612,18 @@ document.getElementById("navToggle").addEventListener("click", function(){
   document.getElementById("navGroups").classList.toggle("open");
 });
 route();
+</script>
+<script>
+(function () {
+  fetch('/version.json', { cache: 'no-store' })
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((d) => {
+      if (d && typeof d.version === 'string' && d.version) {
+        document.getElementById('app-version').textContent = 'Pubvera hub v' + d.version;
+      }
+    })
+    .catch(() => { /* leave the footer without a version */ });
+})();
 </script>
 </body>
 </html>
