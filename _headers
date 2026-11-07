@@ -1,2 +1,5 @@
 /version.json
   Cache-Control: no-store
+
+/*
+  Strict-Transport-Security: max-age=300
