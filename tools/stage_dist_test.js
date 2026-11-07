@@ -71,8 +71,10 @@ try {
   check("_headers has Cache-Control: no-store", headers.includes("Cache-Control: no-store"));
   // The repo copy too: dist/ only gets _headers once it is tracked.
   const repoHeaders = fs.existsSync(path.join(root, "_headers")) ? fs.readFileSync(path.join(root, "_headers"), "utf8") : "";
-  check("repo _headers is /version.json with Cache-Control: no-store",
-    repoHeaders.replace(/\r\n/g, "\n") === "/version.json\n  Cache-Control: no-store\n");
+  check("repo _headers is /version.json no-store plus one HSTS rule for /*",
+    repoHeaders.replace(/\r\n/g, "\n") === "/version.json\n  Cache-Control: no-store\n\n/*\n  Strict-Transport-Security: max-age=300\n");
+  check("dist _headers has exactly one Strict-Transport-Security line",
+    (headers.match(/Strict-Transport-Security:/g) || []).length === 1);
 
   // A non-empty outdir must be refused, so a stale file can never be published.
   const busy = path.join(tmp, "busy");
