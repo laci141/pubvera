@@ -72,7 +72,7 @@ try {
   // The repo copy too: dist/ only gets _headers once it is tracked.
   const repoHeaders = fs.existsSync(path.join(root, "_headers")) ? fs.readFileSync(path.join(root, "_headers"), "utf8") : "";
   check("repo _headers is /version.json no-store plus one HSTS rule for /*",
-    repoHeaders.replace(/\r\n/g, "\n") === "/version.json\n  Cache-Control: no-store\n\n/*\n  Strict-Transport-Security: max-age=300\n");
+    repoHeaders.replace(/\r\n/g, "\n") === "/version.json\n  Cache-Control: no-store\n\n/*\n  Strict-Transport-Security: max-age=604800\n");
   check("dist _headers has exactly one Strict-Transport-Security line",
     (headers.match(/Strict-Transport-Security:/g) || []).length === 1);
 

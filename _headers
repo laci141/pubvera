@@ -2,4 +2,4 @@
   Cache-Control: no-store
 
 /*
-  Strict-Transport-Security: max-age=300
+  Strict-Transport-Security: max-age=604800
